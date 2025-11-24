@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}Art Gallery{% endblock %}</title>
+<style>
+body {
+    margin:0;
+    font-family:"Inter", sans-serif;
+    background:#0d0d0d;
+    color:white;
+}
+a { color:#ff77ff; text-decoration:none; }
+a:hover { text-decoration:underline; }
+
+nav {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 40px;
+    background:#1a1a1a;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+}
+nav a { margin-left:20px; }
+
+.container { max-width:1200px; margin:0 auto; padding:40px 20px; }
+button {
+    background:#812bff; color:white; border:none; padding:10px 20px;
+    border-radius:8px; cursor:pointer; font-size:16px;
+}
+button:hover { background:#a445ff; }
+
+input, select {
+    padding:8px 12px; border-radius:8px; border:none; outline:none;
+}
+form { display:flex; flex-direction:column; gap:10px; }
+
+h1,h2,h3 { margin:0 0 15px 0; }
+</style>
+{% block extra_head %}{% endblock %}
+</head>
+<body>
+<nav>
+    <div><a href="{% url 'index' %}">Art Gallery</a></div>
+    <div>
+        {% if request.user.is_authenticated %}
+            Привет, {{ request.user.username }} |
+            <a href="{% url 'logout_view' %}">Выйти</a> |
+            <a href="{% url 'addPicture' %}">Добавить работу</a>
+        {% else %}
+            <a href="{% url 'login_view' %}">Войти</a> |
+            <a href="{% url 'register_view' %}">Регистрация</a>
+        {% endif %}
+    </div>
+</nav>
+
+<div class="container">
+    {% block content %}{% endblock %}
+</div>
+</body>
+</html>

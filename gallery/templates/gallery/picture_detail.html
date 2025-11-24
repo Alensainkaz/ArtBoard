@@ -1,0 +1,10 @@
+{% extends 'gallery/base.html' %}
+{% block content %}
+{% if picture.image %}
+    <img src="{{ picture.image.url }}" alt="{{ picture.title }}" width="400">
+{% endif %}
+<h2>{{ picture.title }}</h2>
+<p>{{  picture.description }}</p>
+<p>{{ picture.category }}</p>
+<small>{{ picture.created_at|date:"d.m.Y H:i" }}</small>
+{% endblock content %}

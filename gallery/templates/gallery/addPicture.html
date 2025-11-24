@@ -1,0 +1,10 @@
+{% extends 'gallery/base.html' %}
+{% block content %}
+<h2>{% if picture %}Редактировать{% else %}Добавить{% endif %} работу</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">{% if picture %}Сохранить{% else %}Добавить{% endif %}</button>
+</form>
+<a href="{% url 'index' %}">← Назад к галерее</a>
+{% endblock %}

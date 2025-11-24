@@ -1,0 +1,37 @@
+{% extends 'gallery/base.html' %}
+{% block content %}
+    <div class="Category">
+        <strong>Категории:</strong>
+        {% for c in categories %}
+            <a href="?category={{ c.id }}">{{ c.name }}</a>
+        {% endfor %}
+    <form method="get">
+        <input type="text" name="q" placeholder="Поиск по названию работы" value="{{ request.GET.q }}">
+        <button type="submit">Искать</button>
+    </form>
+    {% if user.is_authenticated %}
+        <p>Привет,{{ user.username }}</p>
+        <a href="{% url 'logout_view' %}">Выйти</a>
+
+    {% else %}
+        <a href="{% url 'login_view' %}">Войти</a>
+        <a href="{% url 'register_view' %}">Зарегистрироваться</a>
+    {% endif %}
+
+    </div>
+    <a href="{% url 'addPicture' %}">Добавить свою картину</a>
+
+    {% for picture in pictures %}
+        {% if picture.image %}
+            <img src="{{ picture.image.url }}" alt="{{ picture.title }}" width="400">
+        {% endif %}
+        <a href="{% url 'picture_detail' picture.id %}">
+            <strong>{{ picture.title }}</strong>
+        </a>
+        <p>{{ picture.description }}</p>
+        <p>Category: {{ picture.category }}</p>
+        <small>{{ picture.created_at|date:"d.m.Y H:i" }}</small>
+        <a href="{% url 'edit_picture' picture.id %}">Изменить работу</a>
+        <a href="{% url 'delete_picture' picture.id %}">Удалить работу</a>
+{% endfor %}
+{% endblock content %}
