@@ -24,8 +24,7 @@ SECRET_KEY = 'django-insecure-7ru=(a8p75vf5)_l4pn$3)y&%!1^8a@=f2vl$lm*pqi%6alsny
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS =['artboard-0tsn.onrender.com']
+ALLOWED_HOSTS = ['artboard-4.onrender.com']
 
 
 # Application definition
