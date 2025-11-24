@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-7ru=(a8p75vf5)_l4pn$3)y&%!1^8a@=f2vl$lm*pqi%6alsny
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS =['artboard-0tsn.onrender.com']
 
 
 # Application definition
@@ -124,6 +124,8 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 import os
 
 MEDIA_URL = '/media/'
